@@ -1,3 +1,95 @@
 <script>
+    function capitalize(text){
+        text=text.toLowerCase();
+        
+        let firstchar= text.slice(0,1);
+        
+        let replacement=firstchar.toUpperCase();
+        
+        text=text.replace(firstchar,replacement);
+        return text;
+      }
+    
+    function computerPlay(){
+        let num=Math.floor(Math.random()*3);
+        if(num==0){
+            return "Rock";
+        }
+        else if(num ==1){
+            return "Paper";
+        }
+        else{
+            return "Scissors";
+        }
+    }
+
+    let playerwins=false;
+    let tie=false;
+    function playRound(playerSelection,computerSelection){
+        
+        playerSelection=playerSelection.toUpperCase();
+        computerSelection=computerSelection.toUpperCase()
+
+        playerwins=false;
+        tie=false;
+        if(playerSelection==computerSelection){
+            tie=true;
+            return "It's a Tie! "+capitalize(playerSelection)+" ties with "+capitalize(computerSelection);
+            
+        }
+        else if(playerSelection=="ROCK"){
+            if(computerSelection=="SCISSORS"){
+                playerwins=true;
+            }
+        }
+        else if(playerSelection=="PAPER"){
+            if(computerSelection=="ROCK"){
+                playerwins=true;
+            }
+        }
+        else if(playerSelection=="SCISSORS"){
+            if(computerSelection=="PAPER"){
+                playerwins=true;
+            }
+        }
+
+        if (playerwins){
+            return "You Win! "+capitalize(playerSelection)+" beats "+capitalize(computerSelection);
+        }
+        else{
+            return "You Lost! "+capitalize(computerSelection)+" beats "+capitalize(playerSelection);
+        }
+    }
+    let playerScore=0,computerScore=0;
+    function game(){
+        
+        for(let i=1;i<=5;i++){
+            console.log(playRound(prompt("Choose Rock, Paper, or Scissors"), computerPlay()))
+            if(tie){
+
+            }
+            else if(playerwins){
+                playerScore++;
+            }
+            else {
+                computerScore++;
+            }
+            console.log("Game #"+i+" Score: "+playerScore+" - "+computerScore);
+        }
+        if(playerScore==computerScore){
+            console.log("The Game is a tie!");
+        }
+        else if(playerScore>computerScore){
+            console.log("You Won the Game!");
+        }
+        else{
+            console.log("You Lost the Game!")
+        }
+        playerScore=0;
+        computerScore=0;
+    }
+    while(true){
+        game();
+    }
     
 </script>
