@@ -1,95 +1,40 @@
-<script>
-    function capitalize(text){
-        text=text.toLowerCase();
-        
-        let firstchar= text.slice(0,1);
-        
-        let replacement=firstchar.toUpperCase();
-        
-        text=text.replace(firstchar,replacement);
-        return text;
-      }
-    
-    function computerPlay(){
-        let num=Math.floor(Math.random()*3);
-        if(num==0){
-            return "Rock";
-        }
-        else if(num ==1){
-            return "Paper";
-        }
-        else{
-            return "Scissors";
-        }
-    }
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1> Round 1</h1>
+      <div> First to 5 wins!</div>
+      <div id=result> Let's get started</div>
+    </header>
+    <div id=scores>
 
-    let playerwins=false;
-    let tie=false;
-    function playRound(playerSelection,computerSelection){
-        
-        playerSelection=playerSelection.toUpperCase();
-        computerSelection=computerSelection.toUpperCase()
+      <div id=playerContainer>
+        <div id=playerLabel> Player</div>
+        <div id=playerScore> 0 </div>
+        <img id = playerMove src="images/playericons/rock.png">
+      </div>
+      
+      <div id=computerContainer>
+        <div id=computerLabel> Computer </div>
+        <div id=computerScore> 0 </div>
+        <img id = computerMove src="images/computericons/rock.png">
+      </div>
 
-        playerwins=false;
-        tie=false;
-        if(playerSelection==computerSelection){
-            tie=true;
-            return "It's a Tie! "+capitalize(playerSelection)+" ties with "+capitalize(computerSelection);
-            
-        }
-        else if(playerSelection=="ROCK"){
-            if(computerSelection=="SCISSORS"){
-                playerwins=true;
-            }
-        }
-        else if(playerSelection=="PAPER"){
-            if(computerSelection=="ROCK"){
-                playerwins=true;
-            }
-        }
-        else if(playerSelection=="SCISSORS"){
-            if(computerSelection=="PAPER"){
-                playerwins=true;
-            }
-        }
+    </div>
 
-        if (playerwins){
-            return "You Win! "+capitalize(playerSelection)+" beats "+capitalize(computerSelection);
-        }
-        else{
-            return "You Lost! "+capitalize(computerSelection)+" beats "+capitalize(playerSelection);
-        }
-    }
-    let playerScore=0,computerScore=0;
-    function game(){
-        
-        for(let i=1;i<=5;i++){
-            console.log(playRound(prompt("Choose Rock, Paper, or Scissors"), computerPlay()))
-            if(tie){
+    <div id=controls>
 
-            }
-            else if(playerwins){
-                playerScore++;
-            }
-            else {
-                computerScore++;
-            }
-            console.log("Game #"+i+" Score: "+playerScore+" - "+computerScore);
-        }
-        if(playerScore==computerScore){
-            console.log("The Game is a tie!");
-        }
-        else if(playerScore>computerScore){
-            console.log("You Won the Game!");
-        }
-        else{
-            console.log("You Lost the Game!")
-        }
-        playerScore=0;
-        computerScore=0;
-    }
-    while(true){
-        game();
-    }
-    
-</script>
+      <input type="image" src= "images/playericons/rock.png" id=rockButton>
+      <input type="image" src= "images/playericons/paper.png" id=paperButton>
+      <input type="image" src= "images/playericons/scissors.png" id=scissorsButton>
+
+    </div>
+
+  </body>
+</html>
